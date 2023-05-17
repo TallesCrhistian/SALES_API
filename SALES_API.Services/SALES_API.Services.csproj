@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SALES_API.Business\SALES_API.Business.csproj" />
     <ProjectReference Include="..\SALES_API.Data\SALES_API.Data.csproj" />
     <ProjectReference Include="..\SALES_API.Shared\SALES_API.Shared.csproj" />
   </ItemGroup>

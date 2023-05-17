@@ -1,6 +1,6 @@
 ﻿namespace SALES_API.Shared.ModelViews.Client
 {
-    public class ClientCreateModelView
+    public class ClientCreateViewModel
     {
         public string Name { get; set; }
 

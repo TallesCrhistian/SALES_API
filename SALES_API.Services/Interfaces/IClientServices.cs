@@ -5,6 +5,6 @@ namespace SALES_API.Services.Interfaces
 {
     public interface IClientServices
     {
-        Task<ServiceResponseDTO<ClientModelView>> Create(ClientCreateModelView clientCreateModelView);
+        Task<ServiceResponseDTO<ClientViewModel>> Create(ClientCreateViewModel clientCreateModelView);
     }
 }

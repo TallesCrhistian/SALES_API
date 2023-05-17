@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using SALES_API.Business.Interfaces;
 using SALES_API.Data.WorkUnit.Interfaces;
 using SALES_API.Services.Interfaces;
 using SALES_API.Shared.DTOs;
+using SALES_API.Shared.Messages;
 using SALES_API.Shared.ModelViews.Client;
 using System.Net;
 
@@ -20,16 +22,19 @@ namespace SALES_API.Services
             _iClientBusiness = iClientBusiness;
         }
 
-        public async Task<ServiceResponseDTO<ClientModelView>> Create(ClientCreateModelView clientCreateModelView)
+        public async Task<ServiceResponseDTO<ClientViewModel>> Create(ClientCreateViewModel clientCreateModelView)
         {
-            ServiceResponseDTO<ClientModelView> serviceResponseDTO = new ServiceResponseDTO<ClientModelView>();
+            ServiceResponseDTO<ClientViewModel> serviceResponseDTO = new ServiceResponseDTO<ClientViewModel>();
 
             try
             {
                 ClientDTO clientDTO = _mapper.Map<ClientDTO>(clientCreateModelView);
+                clientDTO = await _iClientBusiness.Create(clientDTO);
 
-                serviceResponseDTO.GenericData = _iClientBusiness.Create(clientDTO);
-                serviceResponseDTO.StatusCode = Convert.ToInt32(HttpStatusCode.OK);
+                serviceResponseDTO.GenericData = _mapper.Map<ClientViewModel>(clientDTO);
+                serviceResponseDTO.StatusCode = Convert.ToInt32(HttpStatusCode.Created);
+                serviceResponseDTO.Message = OkMessages.ClientCreated;
+                serviceResponseDTO.Sucess = true;
 
                 await _iWorkUnit.CommitAsync();
             }

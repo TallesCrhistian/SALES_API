@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SALES_API.Entities\SALES_API.Entities.csproj" />
+    <ProjectReference Include="..\SALES_API.Shared\SALES_API.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
