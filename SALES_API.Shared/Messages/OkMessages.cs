@@ -3,5 +3,6 @@
     public static class OkMessages
     {
         public const string ClientCreated = "Client created sucessfully";
+        public const string ClientRead = "Client read sucessfully";
     }
 }

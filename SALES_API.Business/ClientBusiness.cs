@@ -30,5 +30,15 @@ namespace SALES_API.Business
 
             return clientDTO;
         }
+
+        public async Task<ClientDTO> Read(Guid id)
+        {
+            Client client = await _clientRepository.Read(id);
+
+            ClientDTO clientDTO = client is not null ? _mapper.Map<ClientDTO>(client)
+                : throw new HttpRequestException(); 
+
+            return clientDTO;
+        }
     }
 }

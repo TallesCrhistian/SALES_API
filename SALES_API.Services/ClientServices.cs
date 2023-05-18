@@ -49,5 +49,32 @@ namespace SALES_API.Services
 
             return serviceResponseDTO;
         }
+
+        public async Task<ServiceResponseDTO<ClientViewModel>> Read(Guid id)
+        {
+            ServiceResponseDTO<ClientViewModel> serviceResponseDTO = new ServiceResponseDTO<ClientViewModel>();
+
+            try
+            {
+                ClientDTO clientDTO = await _iClientBusiness.Read(id);
+
+                serviceResponseDTO.GenericData = _mapper.Map<ClientViewModel>(clientDTO);
+                serviceResponseDTO.StatusCode = Convert.ToInt32(HttpStatusCode.OK);
+                serviceResponseDTO.Message = OkMessages.ClientRead;
+                serviceResponseDTO.Sucess = true;
+
+                await _iWorkUnit.CommitAsync();
+            }
+            catch (Exception ex)
+            {
+                _iWorkUnit.Rollback();
+
+                serviceResponseDTO.Sucess = false;
+                serviceResponseDTO.Message = ex.Message;
+                serviceResponseDTO.StatusCode = Convert.ToInt32(HttpStatusCode.InternalServerError);
+            }
+
+            return serviceResponseDTO;
+        }
     }
 }

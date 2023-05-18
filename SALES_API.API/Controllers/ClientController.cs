@@ -26,5 +26,14 @@ namespace SALES_API.API.Controllers
 
             return StatusCode(serviceResponseDTO.StatusCode, serviceResponseDTO);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Read(Guid id)
+
+        {
+            ServiceResponseDTO<ClientViewModel> serviceResponseDTO = await _iClientServices.Read(id);
+
+            return StatusCode(serviceResponseDTO.StatusCode, serviceResponseDTO);
+        }
     }
 }

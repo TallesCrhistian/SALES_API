@@ -6,5 +6,7 @@ namespace SALES_API.Services.Interfaces
     public interface IClientServices
     {
         Task<ServiceResponseDTO<ClientViewModel>> Create(ClientCreateViewModel clientCreateModelView);
+
+        Task<ServiceResponseDTO<ClientViewModel>> Read(Guid id);
     }
 }
