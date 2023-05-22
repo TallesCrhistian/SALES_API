@@ -56,7 +56,7 @@ namespace SALES_API.Services
 
             try
             {
-                ClientDTO clientDTO = await _iClientBusiness.Read(id);
+                ClientDTO clientDTO = await _iClientBusiness.Read(id);  
 
                 serviceResponseDTO.GenericData = _mapper.Map<ClientViewModel>(clientDTO);
                 serviceResponseDTO.StatusCode = Convert.ToInt32(HttpStatusCode.OK);
@@ -64,6 +64,7 @@ namespace SALES_API.Services
                 serviceResponseDTO.Sucess = true;
 
                 await _iWorkUnit.CommitAsync();
+
             }
             catch (Exception ex)
             {
