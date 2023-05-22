@@ -7,5 +7,7 @@ namespace SALES_API.Business.Interfaces
         Task<ClientDTO> Create(ClientDTO clientDTO);
 
         Task<ClientDTO> Read(Guid id);
+
+        Task<ClientDTO> Update(ClientDTO clientDTO);
     }
 }

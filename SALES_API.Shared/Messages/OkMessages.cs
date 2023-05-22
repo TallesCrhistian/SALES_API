@@ -4,5 +4,6 @@
     {
         public const string ClientCreated = "Client created sucessfully";
         public const string ClientRead = "Client read sucessfully";
+        public const string ClientUpdate = "Client Update sucessfully";
     }
 }

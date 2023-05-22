@@ -35,5 +35,14 @@ namespace SALES_API.API.Controllers
 
             return StatusCode(serviceResponseDTO.StatusCode, serviceResponseDTO);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(ClientUpdateViewModel clientUpdateViewModel)
+
+        {
+            ServiceResponseDTO<ClientViewModel> serviceResponseDTO = await _iClientServices.Update(clientUpdateViewModel);
+
+            return StatusCode(serviceResponseDTO.StatusCode, serviceResponseDTO);
+        }
     }
 }

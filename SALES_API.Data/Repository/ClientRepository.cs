@@ -23,10 +23,28 @@ namespace SALES_API.Data.Repository
 
         public async Task<Client> Read(Guid id)
         {
-            Client client = await _appDbContext.Clients.Where(x => x.Id == id)
+            Client client = await _appDbContext.Clients.Where(x => x.Id == id) 
                 .FirstOrDefaultAsync();
+
+             await _appDbContext.SaveChangesAsync();
 
             return client;
         }
+
+        public async Task<Client> Update(Client client)
+        {
+            Client existingClient = await _appDbContext.Clients.Where(x => x.Id == client.Id)
+                .FirstOrDefaultAsync();
+
+            if (existingClient != null)
+            {
+                _appDbContext.Entry(existingClient).CurrentValues.SetValues(client);
+                await _appDbContext.SaveChangesAsync();
+                return client;
+            }
+
+            return existingClient;
+        }
+        
     }
 }

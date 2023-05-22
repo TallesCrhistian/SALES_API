@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.DependencyInjection;
 using SALES_API.Business.Interfaces;
 using SALES_API.Data.Interfaces;
 using SALES_API.Entities;
@@ -36,9 +37,22 @@ namespace SALES_API.Business
             Client client = await _clientRepository.Read(id);
 
             ClientDTO clientDTO = client is not null ? _mapper.Map<ClientDTO>(client)
-                : throw new HttpRequestException(); 
+                : throw new HttpRequestException();
 
             return clientDTO;
         }
+
+        public async Task<ClientDTO> Update(ClientDTO clientDTO)
+        {
+            Client client = _mapper.Map<Client>(clientDTO);
+            client.Update_at = DateTime.Now;
+            client = await _clientRepository.Update(client);
+
+            clientDTO = client is not null ? _mapper.Map<ClientDTO>(client)
+                : throw new HttpRequestException();
+
+            return clientDTO;
+        }
+
     }
 }
