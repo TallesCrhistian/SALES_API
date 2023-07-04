@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SALES_API.Services.Interfaces;
 using SALES_API.Shared.DTOs;
 using SALES_API.Shared.ModelViews.Client;
-using System.Security.Claims;
 
 namespace SALES_API.API.Controllers
 {
