@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.Extensions.DependencyInjection;
 using SALES_API.Business.Interfaces;
 using SALES_API.Data.Interfaces;
 using SALES_API.Entities;
@@ -54,5 +53,15 @@ namespace SALES_API.Business
             return clientDTO;
         }
 
+        public async Task<ClientDTO> Delete(Guid id)
+        {
+            Client client = await _clientRepository.Delete(id);
+
+            ClientDTO clientDTO = client is not null ? _mapper.Map<ClientDTO>(client)
+                : throw new HttpRequestException();
+
+            return clientDTO;
+
+        }
     }
 }

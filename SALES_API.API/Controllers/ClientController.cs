@@ -42,5 +42,14 @@ namespace SALES_API.API.Controllers
 
             return StatusCode(serviceResponseDTO.StatusCode, serviceResponseDTO);
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(Guid id)
+
+        {
+            ServiceResponseDTO<ClientViewModel> serviceResponseDTO = await _iClientServices.Delete(id);
+
+            return StatusCode(serviceResponseDTO.StatusCode, serviceResponseDTO);
+        }
     }
 }

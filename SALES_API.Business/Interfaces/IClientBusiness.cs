@@ -9,5 +9,7 @@ namespace SALES_API.Business.Interfaces
         Task<ClientDTO> Read(Guid id);
 
         Task<ClientDTO> Update(ClientDTO clientDTO);
+
+        Task<ClientDTO> Delete(Guid id);
     }
 }

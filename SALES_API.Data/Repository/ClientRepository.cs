@@ -23,10 +23,10 @@ namespace SALES_API.Data.Repository
 
         public async Task<Client> Read(Guid id)
         {
-            Client client = await _appDbContext.Clients.Where(x => x.Id == id) 
+            Client client = await _appDbContext.Clients.Where(x => x.Id == id)
                 .FirstOrDefaultAsync();
 
-             await _appDbContext.SaveChangesAsync();
+            await _appDbContext.SaveChangesAsync();
 
             return client;
         }
@@ -45,6 +45,21 @@ namespace SALES_API.Data.Repository
 
             return existingClient;
         }
-        
+
+        public async Task<Client> Delete(Guid id)
+        {
+            Client client = await _appDbContext.Clients.Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
+
+            if (client != null)
+            {
+                _appDbContext.Clients.Remove(client);
+            }
+
+            await _appDbContext.SaveChangesAsync();
+
+            return client;
+        }
+
     }
 }

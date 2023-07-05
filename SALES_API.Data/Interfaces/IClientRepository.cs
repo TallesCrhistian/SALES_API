@@ -8,6 +8,8 @@ namespace SALES_API.Data.Interfaces
 
         Task<Client> Read(Guid id);
 
-        Task<Client> Update(Client client); 
+        Task<Client> Update(Client client);
+
+        Task<Client> Delete(Guid id);
     }
 }

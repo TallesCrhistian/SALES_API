@@ -10,5 +10,7 @@ namespace SALES_API.Services.Interfaces
         Task<ServiceResponseDTO<ClientViewModel>> Read(Guid id);
 
         Task<ServiceResponseDTO<ClientViewModel>> Update(ClientUpdateViewModel clientUpdateViewModel);
+
+        Task<ServiceResponseDTO<ClientViewModel>> Delete(Guid id);
     }
 }
