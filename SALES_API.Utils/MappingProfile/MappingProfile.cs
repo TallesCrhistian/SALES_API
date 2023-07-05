@@ -11,11 +11,13 @@ namespace SALES_API.Utils.MappingProfile
         {
 
             CreateMap<ClientCreateViewModel, ClientDTO>();
-           
+
             CreateMap<ClientDTO, Client>()
                 .ReverseMap();
 
             CreateMap<ClientDTO, ClientViewModel>();
+
+            CreateMap<ClientUpdateViewModel, ClientDTO>();
         }
     }
 }

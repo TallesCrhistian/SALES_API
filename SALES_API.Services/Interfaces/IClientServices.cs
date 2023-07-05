@@ -8,5 +8,7 @@ namespace SALES_API.Services.Interfaces
         Task<ServiceResponseDTO<ClientViewModel>> Create(ClientCreateViewModel clientCreateModelView);
 
         Task<ServiceResponseDTO<ClientViewModel>> Read(Guid id);
+
+        Task<ServiceResponseDTO<ClientViewModel>> Update(ClientUpdateViewModel clientUpdateViewModel);
     }
 }

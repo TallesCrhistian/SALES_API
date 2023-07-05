@@ -7,5 +7,7 @@ namespace SALES_API.Data.Interfaces
         Task<Client> Create(Client client);
 
         Task<Client> Read(Guid id);
+
+        Task<Client> Update(Client client); 
     }
 }

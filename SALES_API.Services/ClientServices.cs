@@ -56,7 +56,7 @@ namespace SALES_API.Services
 
             try
             {
-                ClientDTO clientDTO = await _iClientBusiness.Read(id);  
+                ClientDTO clientDTO = await _iClientBusiness.Read(id);
 
                 serviceResponseDTO.GenericData = _mapper.Map<ClientViewModel>(clientDTO);
                 serviceResponseDTO.StatusCode = Convert.ToInt32(HttpStatusCode.OK);
@@ -64,7 +64,34 @@ namespace SALES_API.Services
                 serviceResponseDTO.Sucess = true;
 
                 await _iWorkUnit.CommitAsync();
+            }
+            catch (Exception ex)
+            {
+                _iWorkUnit.Rollback();
 
+                serviceResponseDTO.Sucess = false;
+                serviceResponseDTO.Message = ex.Message;
+                serviceResponseDTO.StatusCode = Convert.ToInt32(HttpStatusCode.InternalServerError);
+            }
+
+            return serviceResponseDTO;
+        }
+
+        public async Task<ServiceResponseDTO<ClientViewModel>> Update(ClientUpdateViewModel clientUpdateViewModel)
+        {
+            ServiceResponseDTO<ClientViewModel> serviceResponseDTO = new ServiceResponseDTO<ClientViewModel>();
+
+            try
+            {
+                ClientDTO clientDTO = _mapper.Map<ClientDTO>(clientUpdateViewModel);
+                clientDTO = await _iClientBusiness.Update(clientDTO);
+
+                serviceResponseDTO.GenericData = _mapper.Map<ClientViewModel>(clientDTO);
+                serviceResponseDTO.StatusCode = Convert.ToInt32(HttpStatusCode.OK);
+                serviceResponseDTO.Message = OkMessages.ClientRead;
+                serviceResponseDTO.Sucess = true;
+
+                await _iWorkUnit.CommitAsync();
             }
             catch (Exception ex)
             {
